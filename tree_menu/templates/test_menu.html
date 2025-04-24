@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load menu_tags %}
+
+{% block content %}
+<h1>Тест меню</h1>
+
+<div style="display: flex; gap: 50px;">
+  <div>
+    <h3>Основное меню:</h3>
+    {% draw_menu 'main_menu' %}
+  </div>
+  <div>
+    <h3>Другое меню:</h3>
+    {% draw_menu 'secondary_menu' %}
+  </div>
+</div>
+{% endblock %}

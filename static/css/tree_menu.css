@@ -1,0 +1,93 @@
+/* Основные стили меню */
+.tree-menu {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Стили пунктов меню */
+.tree-menu .menu-item {
+    position: relative;
+    margin: 5px 0;
+}
+
+.tree-menu .menu-link {
+    display: block;
+    padding: 8px 15px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Стили активного пункта */
+.tree-menu .menu-item.active > .menu-link,
+.tree-menu .menu-link:hover {
+    background-color: #f0f0f0;
+    color: #0066cc;
+}
+
+/* Стили подменю */
+.tree-menu .submenu {
+    list-style: none;
+    padding-left: 20px;
+    display: none;
+    margin-top: 5px;
+}
+
+.tree-menu .expanded > .submenu {
+    display: block;
+}
+
+/* Иконки для пунктов с подменю */
+.tree-menu .has-children > .menu-link::after {
+    content: "▼";
+    font-size: 0.8em;
+    margin-left: 8px;
+    transition: transform 0.3s;
+}
+
+.tree-menu .has-children.expanded > .menu-link::after {
+    transform: rotate(180deg);
+}
+
+/* Разные уровни вложенности */
+.tree-menu .submenu .menu-link {
+    padding-left: 25px;
+}
+
+.tree-menu .submenu .submenu .menu-link {
+    padding-left: 35px;
+}
+
+/* Стили для главного меню */
+.tree-menu.main_menu {
+    background-color: #f8f9fa;
+    padding: 10px;
+}
+
+/* Стили для бокового меню */
+.tree-menu.sidebar_menu {
+    width: 250px;
+}
+
+.tree-menu .submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.tree-menu .expanded > .submenu {
+    max-height: 1000px; /* Достаточно большое значение */
+}
+
+@media (max-width: 768px) {
+    .tree-menu {
+        width: 100%;
+    }
+
+    .tree-menu .menu-link {
+        padding: 10px;
+    }
+}

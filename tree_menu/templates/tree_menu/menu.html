@@ -1,0 +1,49 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/tree_menu.css' %}">
+
+<ul class="tree-menu {{ menu_name }}">
+    {% for item in menu_tree %}
+        <li class="menu-item
+                  {% if item.children %}has-children{% endif %}
+                  {% if item.is_active %}active{% endif %}
+                  {% if item.should_expand %}expanded{% else %}collapsed{% endif %}">
+            <a href="{{ item.url }}"
+               class="menu-link {% if item.is_active %}active{% endif %}"
+               {% if item.is_active %}aria-current="page"{% endif %}>
+                {{ item.item.name }}
+            </a>
+
+            {% if item.children and item.should_expand %}
+                <ul class="submenu">
+                    {% for child in item.children %}
+                        <li class="menu-item
+                                  {% if child.children %}has-children{% endif %}
+                                  {% if child.is_active %}active{% endif %}
+                                  {% if child.should_expand %}expanded{% else %}collapsed{% endif %}">
+                            <a href="{{ child.url }}"
+                               class="menu-link {% if child.is_active %}active{% endif %}"
+                               {% if child.is_active %}aria-current="page"{% endif %}>
+                                {{ child.item.name }}
+                            </a>
+
+                            {% if child.children and child.should_expand %}
+                                <ul class="submenu">
+                                    {% for subchild in child.children %}
+                                        <li class="menu-item {% if subchild.is_active %}active{% endif %}">
+                                            <a href="{{ subchild.url }}"
+                                               class="menu-link {% if subchild.is_active %}active{% endif %}"
+                                               {% if subchild.is_active %}aria-current="page"{% endif %}>
+                                                {{ subchild.item.name }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
